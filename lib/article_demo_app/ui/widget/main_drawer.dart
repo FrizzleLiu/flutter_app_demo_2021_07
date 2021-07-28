@@ -92,7 +92,8 @@ class _MainDrawerState extends State<MainDrawer> {
               setState(() {
                 _userName = null;
                 Api.clearCooike();
-                AppManager.prefs?.setString(AppManager.ACCOUNT, _userName!);
+                AppManager.prefs?.setString(AppManager.ACCOUNT, _userName == null ? ""  :_userName!);
+                AppManager.eventBus.fire(LogoutEvent());
               });
             },
             child: const ListTile(
